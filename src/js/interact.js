@@ -28,7 +28,7 @@ import Web3 from 'web3';
 // }
 
 
-export const mintNft = async(name, description, price, url) => {
+export const mintNft = async(name, description, price, image) => {
 
 
     const provider = new Web3(window.ethereum);
@@ -41,29 +41,32 @@ export const mintNft = async(name, description, price, url) => {
         }
     }
 
-    console.log(url, name, description, price);
+    console.log(image, name, description, price);
+
+    const metadata = new Object();
+    metadata.name = name;
+    metadata.description = description;
     // Upload image to Firestore
     try {
-        const response = await axios.post('https://artlink-cf7a7b7b9f96.herokuapp.com/uploadImage', url,
+        const formDataImage = new FormData();
+        formDataImage.append('image', image);
+        const response = await fetch('https://artlink-cf7a7b7b9f96.herokuapp.com/uploadImage',
         {
             headers: {
                 // Allow CORS
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 'Access-Control-Allow-Headers': 'Origin, Authorization, Content-Length, X-Requested-With',
-            }
-        }
-        );
+            },
+            method: 'POST',
+            body: formDataImage,
+        });
         console.log(response);
-        setImgURL(response.url);
+        metadata.image = response.url;
     } catch(err) {
         console.error(err);
     }
 
-    const metadata = new Object();
-    metadata.name = name;
-    metadata.description = description;
-    metadata.image = imgURL;
 
     // Put this in a try catch block
     const pinataResponse = await axios.post('https://artlink-cf7a7b7b9f96.herokuapp.com/pinJSONToIPFS',
@@ -86,11 +89,15 @@ export const mintNft = async(name, description, price, url) => {
             status: "Something went wrong: " + error.message
         };
     });
+    console.log(pinataResponse.pinataUrl);
 
 
 
     try {
-        const mint = await sdk.nft.mint({})
+        const collection = await sdk.apis.collection.getCollectionById({ collection: 'ETHEREUM:0xc9154424B823b10579895cCBE442d41b9Abd96Ed' });
+        console.log(collection);
+        const mint = await sdk.nft.mint({ collection })
+        console.log(mint);
         const result = await mint.submit({
             lazyMint: true,
             supply: 1,

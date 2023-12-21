@@ -18,7 +18,7 @@ export default function mintNFT(props) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
-    const [url, setUrl] = useState('');
+    const [image, setImage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -29,12 +29,12 @@ export default function mintNFT(props) {
 
         try{
 
-            const {success, status} = await mintNft(name, description, price, url);
+            const {success, status} = await mintNft(name, description, price, image);
             setStatus(status);
             if(success){
                 setName('');
                 setDescription('');
-                setUrl('');
+                setImage('');
                 setPrice(0);
             }
             else {
@@ -124,7 +124,7 @@ export default function mintNFT(props) {
                                                 <div className='d-flex'>
                                                 <label className='form-label fw-semibold'>Upload your NFT:</label>
                                                 </div>
-                                                <input type='file' onChange={(event) => setUrl(event.target.value)} className='form-control' name='url' required></input>
+                                                <input type='file' onChange={(event) => setImage(event.target.files[0])} className='form-control' name='NFTImage' required></input>
                                             </div>
                                         </div>
                                     </div>
