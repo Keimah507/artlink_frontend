@@ -170,7 +170,7 @@ const ArtistItem = () => {
                             <div className='d-flex align-items-center'>
                                 <div className='d-flex align-items-center'>
                                     <div className='me-3'>
-                                        <Link href='/MintNFT' className='btn btn-primary'>Create NFT</Link>
+                                        <Link href='/mintNFT' className='btn btn-primary'>Create NFT</Link>
                                     </div>
                                     <div className='me-3'>
                                         <Link href='/edit-profile' className='btn btn-primary'>Edit Profile</Link>

@@ -62,7 +62,7 @@ const Navbar = () =>  {
                             </li>
 
                             <li className='nav-item'>
-                                <Link href='/MintNFT' className='nav-link'>Mint NFT</Link>
+                                <Link href='/mintNFT' className='nav-link'>Mint NFT</Link>
                             </li>
 
                             <li className='nav-item'>
