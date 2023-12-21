@@ -2,6 +2,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import RedditIcon from '@mui/icons-material/Reddit';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
     return (
@@ -11,10 +13,10 @@ const Footer = () => {
                     <div className="row">
                          <div className="col-lg-4">
                             <div className="footer-info mt-4">
-                                <a className="logo f-30 text-dark fw-bold" href="/">
-                                    <img src="/images/logo-light.png" className="logo-light" alt="logo" height='40'></img>
-                                    <img src="/images/logo-dark.png" className="logo-dark" alt="logo" height='40'></img>
-                                </a>
+                                <Link className="logo f-30 text-dark fw-bold" href="/">
+                                    <Image src="/images/logo-light.png" className="logo-light" alt="logo" height='40' /> 
+                                    <Image src="/images/logo-dark.png" className="logo-dark" alt="logo" height='40' /> 
+                                </Link>
                             </div>
                          </div>
 

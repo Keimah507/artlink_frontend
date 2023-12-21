@@ -8,6 +8,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 import ProfileTab from '@/components/ProfileTab';
+import Link from 'next/link';
 
 
 const NftsPage = () => {
@@ -79,7 +80,7 @@ const NftsPage = () => {
                         <div className='col-lg-12'>
                             <nav aria-label='breadcrumb'>
                                 <ol className='breadcrumb default mb-0'>
-                                    <li className='breadcrumb-item'><a href='/' className='text-muted'>Home</a></li>
+                                    <li className='breadcrumb-item'><Link href='/' className='text-muted'>Home</Link></li>
                                     <li className='breadcrumb-item active text-primary' aria-current='page'>NFTs</li>
                                 </ol>
                             </nav>

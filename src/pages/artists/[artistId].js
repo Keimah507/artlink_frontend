@@ -9,6 +9,8 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 import ProfileTab from '@/components/ProfileTab';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const ArtistItem = () => {
     const router = useRouter();
@@ -99,7 +101,7 @@ const ArtistItem = () => {
                             <nav aria-label='breadcrumb'>
                                 <ol className='breadcrumb default mb-0'>
                                     <li className='breadcrumb-item'>
-                                        <a href='/' className='text-muted'>Home</a>
+                                        <Link href='/' className='text-muted'>Home</Link>
                                     </li>
                                     <li className='breadcrumb-item active text-primary' aria-current='page'>Profile</li>
                                 </ol>
@@ -128,8 +130,8 @@ const ArtistItem = () => {
                         <div className='col-lg-12'>
                             <div className='d-flex align-items-center justify-content-start'>
                                 <div className='avatar'>
-                                    <img src={artist.profileImg} alt='Artist Profile Picture'
-                                    className='img-fluid avatar-xl border border-4 border-white rounded-circle'></img>
+                                    <Image src={artist.profileImg} alt='Artist Profile Picture'
+                                    className='img-fluid avatar-xl border border-4 border-white rounded-circle'></Image>
                                 </div>
                                 <div className='profile-name ms-3'>
                                     <h6 className='fw-bold'>@{artist.username}</h6>
@@ -163,15 +165,15 @@ const ArtistItem = () => {
                         {/* Heading sufficiently styled showing start of section*/}
                         <div className='d-flex align-items-center justify-content-between'>
                             <div className='heading'>
-                                <h5 className='fw-bold'>{artist.username}'s NFTs</h5>
+                                <h5 className='fw-bold'>{artist.username}`s NFTs</h5>
                             </div>
                             <div className='d-flex align-items-center'>
                                 <div className='d-flex align-items-center'>
                                     <div className='me-3'>
-                                        <a href='/mintNFT' className='btn btn-primary'>Create NFT</a>
+                                        <Link href='/MintNFT' className='btn btn-primary'>Create NFT</Link>
                                     </div>
                                     <div className='me-3'>
-                                        <a href='/edit-profile' className='btn btn-primary'>Edit Profile</a>
+                                        <Link href='/edit-profile' className='btn btn-primary'>Edit Profile</Link>
                                     </div>
                                 </div>
                             </div>

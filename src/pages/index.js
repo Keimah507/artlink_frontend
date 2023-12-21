@@ -18,6 +18,8 @@ import HeroCarousel from '@/components/Carousel';
 import ExploreTab from '@/components/ExploreTab';
 import ArtistsCarousel from '@/components/ArtistsCarousel';
 import CollectionCard from '@/components/CollectionCard';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function marketplace() {
 
@@ -162,7 +164,7 @@ export default function marketplace() {
                             </div>
                             <div className='col-lg-6'>
                                 <div className='text-start text-lg-end'>
-                                    <a href='/collection'><button className='btn btn-primary rounded-pill'>View All</button></a>
+                                    <Link href='/collection'><button className='btn btn-primary rounded-pill'>View All</button></Link>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +213,7 @@ export default function marketplace() {
                                 <button className='btn btn-primary mt-3'>Start collection</button>
                             </div>
                             <div className='col-lg-4 offset-lg-2'>
-                                <img src='./images/cta/img.png' className='img-fluid'></img>
+                                <Image src='./images/cta/img.png' className='img-fluid' alt='CTA Image'></Image>
                             </div>
                         </div>
                     </div>

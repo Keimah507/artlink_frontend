@@ -10,6 +10,8 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import ProfileTab from '@/components/ProfileTab';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const collectionId = () => {
 
@@ -80,7 +82,7 @@ const collectionId = () => {
                         <div className='col-lg-12'>
                             <nav aria-label='breadcrumb'>
                                 <ol className='breadcrumb default mb-0'>
-                                    <li className='breadcrumb-item'><a href='/' className='text-muted'>Home</a></li>
+                                    <li className='breadcrumb-item'><Link href='/' className='text-muted'>Home</Link></li>
                                     <li className='breadcrumb-item active text-primary' aria-current='page'>Collection</li>
                                 </ol>
                             </nav>
@@ -111,10 +113,10 @@ const collectionId = () => {
                             <div className='mt-4 collection-profile'>
                                 <div className='position-relative col-lg-12 overflow-visible'>
                                     <div className='cover-image'>
-                                    <img src='/images/inner-image/explore/img-1.png' alt='Collection Image' className='img-fluid rounded col-lg-12' style={{height: '300px', width: '100%'}}></img>
+                                    <Image src='/images/inner-image/explore/img-1.png' alt='Collection Image' className='img-fluid rounded col-lg-12' style={{height: '300px', width: '100%'}}></Image>
                                     </div>
                                     <div className='avatar-box position-absolute'>
-                                    <img src='/images/inner-image/user/img-1.jpg' alt='Avatar' className='img-fluid rounded-circle'></img>
+                                    <Image src='/images/inner-image/user/img-1.jpg' alt='Avatar' className='img-fluid rounded-circle'></Image>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +133,7 @@ const collectionId = () => {
                                     </div>
                                     <div className='justify-content-start'>
                                         <span className='fw-semibold'>
-                                            Art's description
+                                            Art`s description
                                         </span>
                                     </div>
                                 </div>

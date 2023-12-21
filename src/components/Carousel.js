@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -59,7 +60,7 @@ const HeroCarousel = () => {
                             </div>
                         </div>
                         <div className='card-image mt-3'>
-                        <img src="/images/slider-blog/1.png" alt="" className='img-fluid' />
+                        <Image src="/images/slider-blog/1.png" alt="" className='img-fluid' />
                         </div>
                         <div className='card-body'>
                             <h6 className='fw-bold mb-0'>Evolved Reality</h6>
@@ -67,7 +68,7 @@ const HeroCarousel = () => {
 
                             <div className='profile-content align-items-center d-flex justify-content-start'>
                                 <div className='avatar-sm'>
-                                    <img src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
+                                    <Image src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
                                 </div>
                                 <div className='profile-name'>
                                     <h6 className='fw-bold mb-0 ms-2 f-14'>Kristin Watson</h6>
@@ -85,7 +86,7 @@ const HeroCarousel = () => {
                             </div>
                         </div>
                         <div className='card-image mt-3'>
-                        <img src="/images/slider-blog/2.png" alt="" className='img-fluid' />
+                        <Image src="/images/slider-blog/2.png" alt="" className='img-fluid' />
                         </div>
                         <div className='card-body'>
                             <h6 className='fw-bold mb-0'>Evolved Reality</h6>
@@ -93,7 +94,7 @@ const HeroCarousel = () => {
 
                             <div className='profile-content align-items-center d-flex justify-content-start'>
                                 <div className='avatar-sm'>
-                                    <img src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
+                                    <Image src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
                                 </div>
                                 <div className='profile-name'>
                                     <h6 className='fw-bold mb-0 ms-2 f-14'>Kristin Watson</h6>
@@ -111,7 +112,7 @@ const HeroCarousel = () => {
                             </div>
                         </div>
                         <div className='card-image mt-3'>
-                        <img src="/images/slider-blog/3.png" alt="" className='img-fluid' />
+                        <Image src="/images/slider-blog/3.png" alt="" className='img-fluid' />
                         </div>
                         <div className='card-body'>
                             <h6 className='fw-bold mb-0'>Evolved Reality</h6>
@@ -119,7 +120,7 @@ const HeroCarousel = () => {
 
                             <div className='profile-content align-items-center d-flex justify-content-start'>
                                 <div className='avatar-sm'>
-                                    <img src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
+                                    <Image src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
                                 </div>
                                 <div className='profile-name'>
                                     <h6 className='fw-bold mb-0 ms-2 f-14'>Kristin Watson</h6>
@@ -137,7 +138,7 @@ const HeroCarousel = () => {
                             </div>
                         </div>
                         <div className='card-image mt-3'>
-                        <img src="/images/slider-blog/4.png" alt="" className='img-fluid' />
+                        <Image src="/images/slider-blog/4.png" alt="" className='img-fluid' />
                         </div>
                         <div className='card-body'>
                             <h6 className='fw-bold mb-0'>Evolved Reality</h6>
@@ -145,7 +146,7 @@ const HeroCarousel = () => {
 
                             <div className='profile-content align-items-center d-flex justify-content-start'>
                                 <div className='avatar-sm'>
-                                    <img src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
+                                    <Image src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
                                 </div>
                                 <div className='profile-name'>
                                     <h6 className='fw-bold mb-0 ms-2 f-14'>Kristin Watson</h6>
@@ -163,7 +164,7 @@ const HeroCarousel = () => {
                             </div>
                         </div>
                         <div className='card-image mt-3'>
-                        <img src="/images/slider-blog/5.png" alt="" className='img-fluid' />
+                        <Image src="/images/slider-blog/5.png" alt="" className='img-fluid' />
                         </div>
                         <div className='card-body'>
                             <h6 className='fw-bold mb-0'>Evolved Reality</h6>
@@ -171,7 +172,7 @@ const HeroCarousel = () => {
 
                             <div className='profile-content align-items-center d-flex justify-content-start'>
                                 <div className='avatar-sm'>
-                                    <img src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
+                                    <Image src="/images/inner-image/user/img-5.jpg" alt="" className='img-fluid rounded-circle' />
                                 </div>
                                 <div className='profile-name'>
                                     <h6 className='fw-bold mb-0 ms-2 f-14'>Kristin Watson</h6>

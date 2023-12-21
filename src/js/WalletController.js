@@ -81,7 +81,7 @@ export const getWalletAddress = async() => {
     }
 }
 
-export const getProvider = () => {
+export const GetProvider = () => {
     const [web3Provider, setWeb3Provider] = useState(null);
 
     useEffect(() => {

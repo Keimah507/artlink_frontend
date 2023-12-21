@@ -7,6 +7,8 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
 import InfoIcon from '@mui/icons-material/Info';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const editProfile = () => {
 
@@ -21,7 +23,7 @@ const editProfile = () => {
                         <div className='col-lg-12'>
                             <nav aria-label='breadcrumb'>
                                 <ol className='breadcrumb'>
-                                    <li className='breadcrumb-item'><a href='/'>Home</a></li>
+                                    <li className='breadcrumb-item'><Link href='/'>Home</Link></li>
                                     <li className='breadcrumb-item active' aria-current='page'>Edit Profile</li>
                                 </ol>
                             </nav>
@@ -78,7 +80,7 @@ const editProfile = () => {
                                         <div className='d-flex align-items-center'>
                                             <div className='flex-shrink-0'>
                                                 <div className='avatar'>
-                                                    <img src='/images/inner-image/img-1.png' alt='' className='img-fluid rounded-circle avatar-sm'></img>
+                                                    <Image src='/images/inner-image/img-1.png' alt='' className='img-fluid rounded-circle avatar-sm'></Image>
                                                 </div>
                                             </div>
                                             <div className='flex-grow-1 ms-3'>

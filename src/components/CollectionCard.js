@@ -1,4 +1,5 @@
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Image from 'next/image';
 import React from "react";
 
 const CollectionCard = ({ href, images, title, artist, likes }) => {
@@ -11,11 +12,11 @@ const CollectionCard = ({ href, images, title, artist, likes }) => {
                         <div className="blog-image">
                             <div className="top-image d-flex justify-content-between">
                                 {images.topImages.map((topImage, index) => (
-                                    <img key={index} src={topImage} alt="" className="img-fluid" />
+                                    <Image key={index} src={topImage} alt="" className="img-fluid" />
                                 ))}
                             </div>
                             <div className="mt-3">
-                                <img src={images.mainImage} alt="" className="img-fluid w-100"></img>
+                                <Image src={images.mainImage} alt="" className="img-fluid w-100" />
                             </div>
                         </div>
                     </div>
@@ -35,7 +36,7 @@ const CollectionCard = ({ href, images, title, artist, likes }) => {
                             <h6 className='f-14 text-muted'>
                                 Created By
                                 <a href='' className='text-muted'>
-                                    <img src={artist.image} alt='' className='img-fluid rounded-circle avatar-xs mx-2'></img>
+                                    <Image src={artist.image} alt='' className='img-fluid rounded-circle avatar-xs mx-2' />
                                     <span>@{artist.username}</span>
                                 </a>
                             </h6>

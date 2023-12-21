@@ -7,6 +7,8 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import ProfileTab from '../components/ProfileTab';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const Profile = () => {
     const profileItems = [
@@ -75,7 +77,7 @@ const Profile = () => {
                         <nav aria-label='breadcrumb'>
                             <ol className='breadcrumb default mb-0'>
                                 <li className='breadcrumb-item'>
-                                    <a href='/' className='text-muted'>Home</a>
+                                    <Link href='/' className='text-muted'>Home</Link>
                                 </li>
                                 <li className='breadcrumb-item active text-primary' aria-current='page'>Profile</li>
                             </ol>
@@ -104,8 +106,8 @@ const Profile = () => {
                     <div className='col-lg-12'>
                         <div className='d-flex align-items-center justify-content-start'>
                             <div className='avatar'>
-                                <img src='/images/inner-image/user/img-7.jpg' alt=''
-                                className='img-fluid avatar-xl border border-4 border-white rounded-circle'></img>
+                                <Image src='/images/inner-image/user/img-7.jpg' alt=''
+                                className='img-fluid avatar-xl border border-4 border-white rounded-circle'></Image>
                             </div>
                             <div className='profile-name ms-3'>
                                 <h6 className='fw-bold'>@mickel_fenn</h6>
@@ -144,10 +146,10 @@ const Profile = () => {
                                 <div className='d-flex align-items-center'>
                                     <div className='d-flex align-items-center'>
                                         <div className='me-3'>
-                                            <a href='/mintNFT' className='btn btn-primary'>Create NFT</a>
+                                            <Link href='/MintNFT' className='btn btn-primary'>Create NFT</Link>
                                         </div>
                                         <div className='me-3'>
-                                            <a href='/edit-profile' className='btn btn-primary'>Edit Profile</a>
+                                            <Link href='/edit-profile' className='btn btn-primary'>Edit Profile</Link>
                                         </div>
                                     </div>
                                 </div>

@@ -8,6 +8,8 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Artists from '@/components/Artists';
 import FilterVintageIcon from '@mui/icons-material/FilterVintage';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const ArtistsPage = () => {
     const [artists, setArtists] = useState([]);
@@ -37,7 +39,7 @@ const ArtistsPage = () => {
                     <div className='col-lg-12'>
                         <nav aria-label='breadcrumb'>
                             <ol className='breadcrumb default mb-0'>
-                                <li className='breadcrumb-item'><a href='/' className='text-muted'>Home</a></li>
+                                <li className='breadcrumb-item'><Link href='/' className='text-muted'>Home</Link></li>
                                 <li className='breadcrumb-item active text-primary' aria-current='page'>Artists</li>
                             </ol>
                         </nav>
@@ -74,7 +76,7 @@ const ArtistsPage = () => {
                                         <h5 className='fw-bold'>{index + 1}.</h5>
                                     </div>
                                     <div className='creator-image text-center'>
-                                        <img src={member.profileImg} alt='' className='img-fluid avatar-lg rounded-circle'></img>
+                                        <Image src={member.profileImg} alt='' className='img-fluid avatar-lg rounded-circle'></Image>
                                     </div>
                                     <div className='creator-content text-center mt-3'>
                                         <h6 className='fw-bold'>{member.username}</h6>

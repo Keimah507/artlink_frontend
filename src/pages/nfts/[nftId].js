@@ -15,6 +15,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import Image from 'next/image';
 
 export default function NFT() {
 
@@ -77,7 +78,7 @@ export default function NFT() {
                     <div className='row mt-5 align-items-center'>
                         <div className='col-lg-6'>
                             <div className='back-home-image pe-4 position-relative'>
-                                <img src={profileItems.image} alt='' className='image-fill'></img>
+                                <Image src={profileItems.image} alt='' className='image-fill'></Image>
                             </div>
                         </div>
 
@@ -207,7 +208,7 @@ const NftDetailTab = () => {
                             <div className='nav-in-box d-flex align-items-center box-shadow p-4'>
                                 <div className='flex-shrink-0'>
                                     <div className='avatar-md'>
-                                        <img src='/images/inner-image/user/img-1.jpg' alt='' className='img-fluid rounded-circle'></img>
+                                        <Image src='/images/inner-image/user/img-1.jpg' alt='' className='img-fluid rounded-circle'></Image>
                                     </div>
                                 </div>
                                 <div className='flex-grow-1 ms-3'>
@@ -220,7 +221,7 @@ const NftDetailTab = () => {
                             <div className='nav-in-box d-flex align-items-center box-shadow p-4 mt-3'>
                                 <div className='flex-shrink-0'>
                                     <div className='avatar-md'>
-                                        <img src='/images/inner-images/user/img-5.jpg' alt='' className='img-fluid rounded-circle'></img>
+                                        <Image src='/images/inner-images/user/img-5.jpg' alt='' className='img-fluid rounded-circle'></Image>
                                     </div>
                                 </div>
                                 <div className='flex-grow-1 ms-3'>

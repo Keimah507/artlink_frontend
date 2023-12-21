@@ -12,7 +12,7 @@ import Footer from "@/components/footer";
 import { mintNft } from '@/js/interact.js';
 import { pinJsonToIPFS } from '@/js/interact.js';
 
-export default function mintNFT(props) {
+export default function MintNFT(props) {
 
     const [status, setStatus] = useState('');
     const [name, setName] = useState('');

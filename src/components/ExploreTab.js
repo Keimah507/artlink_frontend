@@ -9,6 +9,7 @@ import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const ExploreTab = () => {
     const [value, setValue] = useState('1');
@@ -202,12 +203,12 @@ const ExploreTab = () => {
                             <div className='tab-content p-4 border-0'>
                                 <div className='header d-flex align-items-center justify-cotent-start'>
                                     <div className='avatar-xs'>
-                                        <img src={item.artistImage} alt='' className='img-fluid rounded-circle'></img>
+                                        <Image src={item.artistImage} alt='' className='img-fluid rounded-circle' />
                                     </div>
                                     <h6 className='mb-0 ms-2 fw-semibold text-muted f-14'>{item.artist}</h6>
                                 </div>
                                 <div className='card-image mt-3'>
-                                    <img src={item.image} alt='' className='img-fluid'></img>
+                                    <Image src={item.image} alt='' className='img-fluid' />
                                 </div>
                                 <div className='body-content mt-3'>
                                     <h6 className='fw-bold'>{item.title}</h6>
