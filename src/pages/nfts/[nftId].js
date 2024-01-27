@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const nftId = context.params.nftId;
-    const res = await fetch(`http://localhost:5000/getNFT?contract=0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6&tokenId=${nftId}`)
+    const res = await fetch(`https://artlink-cf7a7b7b9f96.herokuapp.com/getNFT?contract=0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6&tokenId=${nftId}`)
     const data = await res.json()
 
     const nft = data.data;

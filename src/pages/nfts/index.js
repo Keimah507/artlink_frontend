@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 
 export const getStaticProps = async () => {
-    const res = await fetch("http://localhost:5000/getNFTs?collection=0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6")
+    const res = await fetch("https://artlink-cf7a7b7b9f96.herokuapp.com/getNFTs?collection=0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6")
     const data = await res.json()
 
     return {
