@@ -1,9 +1,10 @@
     'use client'
 
     import {use, useEffect, useState} from "react";
+    const ethers = require('ethers')
     import {connectWallet, getWalletAddress} from "../js/WalletController";
 
-    const WalletButton = (props) => {
+   const WalletButton = (props) => {
         const [walletAddress, setWalletAddress] = useState('');
         const [status, setStatus] = useState('');
 
@@ -15,6 +16,8 @@
 
         //     addWalletListener();
         // }, []);
+
+     
 
         function addWalletListener() {
             if (window.ethereum) {
@@ -50,19 +53,49 @@
 
 
         return (
-            <div className="WalletButton">
-                <a onClick={connectWalletPressed} className="btn btn-primary">
-                    {walletAddress.length > 0 ? (
-                        "Connected: " +
-                        String(walletAddress).substring(0, 6) +
-                        "..." +
-                        String(walletAddress).substring(38)
-                    ) : (
-                        <span>Connect Wallet</span>
-                    )}
+                <div className="WalletButton">
+                    <a onClick={connectWalletPressed} className="btn btn-primary">
+                        {walletAddress.length > 0 ? (
+                            "Connected: " +
+                            String(walletAddress).substring(0, 6) +
+                            "..." +
+                            String(walletAddress).substring(38)
+                        ) : (
+                            <span>Connect Wallet</span>
+                        )}
                 </a>
             </div>
         )
     }
+
+    // const thirdwebConnectButton = () => {
+    //     return (
+    //         <ThirdwebProvider
+    //         activeChain={'mumbai'}
+    //         clientId="7aeb15e6111d934a94d8f224be536e01"
+    //         locale={en()}
+    //         supportedWallets={[
+    //             metamaskWallet({recommended: true}),
+    //             coinbaseWallet(),
+    //             walletConnect(),
+    //             localWallet(),
+    //             embeddedWallet({
+    //                 auth: {
+    //                     options: ['email', 'google']
+    //                 },
+    //             }),
+    //         ]}
+    //         >
+    //             <ConnectWallet
+    //             theme={"dark"}
+    //             modalSize={"wide"}
+    //             welcomeScreen={{
+    //                 title:
+    //                 "Your gateway to decentralized art"
+    //             }}
+    //             />
+    //         </ThirdwebProvider>
+    //     )
+    // }
 
     export default WalletButton;

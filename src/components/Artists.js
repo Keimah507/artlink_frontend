@@ -8,7 +8,7 @@ const Artists = ({ imageSrc, username, ethAmount }) => {
                 <div className="d-flex align-items-center">
                     <div className="flex-shrink-0">
                         <div className="avatar position-relative">
-                            <Image src={imageSrc} alt="avatar" className="img-fluid rounded-circle" />
+                            <Image src={imageSrc} alt="avatar" className="img-fluid rounded-circle" width='50' height={50} />
                         </div>
                     </div>
                     <div className="flex-grow-1 ms-2">

@@ -12,11 +12,11 @@ const CollectionCard = ({ href, images, title, artist, likes }) => {
                         <div className="blog-image">
                             <div className="top-image d-flex justify-content-between">
                                 {images.topImages.map((topImage, index) => (
-                                    <Image key={index} src={topImage} alt="" className="img-fluid" />
+                                    <Image key={index} src={topImage} alt="" className="img-fluid" layout='responsive' width={30} height={30} />
                                 ))}
                             </div>
                             <div className="mt-3">
-                                <Image src={images.mainImage} alt="" className="img-fluid w-100" />
+                                <Image src={images.mainImage} alt="" className="img-fluid w-100" layout='responsive' width={100} height={100} />
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const CollectionCard = ({ href, images, title, artist, likes }) => {
                             <h6 className='f-14 text-muted'>
                                 Created By
                                 <a href='' className='text-muted'>
-                                    <Image src={artist.image} alt='' className='img-fluid rounded-circle avatar-xs mx-2' />
+                                    <Image src={artist.image} alt='' className='img-fluid rounded-circle avatar-xs mx-2' width={30} height={30}/>
                                     <span>@{artist.username}</span>
                                 </a>
                             </h6>

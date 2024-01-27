@@ -116,7 +116,7 @@ const collectionId = () => {
                                     <Image src='/images/inner-image/explore/img-1.png' alt='Collection Image' className='img-fluid rounded col-lg-12' style={{height: '300px', width: '100%'}}></Image>
                                     </div>
                                     <div className='avatar-box position-absolute'>
-                                    <Image src='/images/inner-image/user/img-1.jpg' alt='Avatar' className='img-fluid rounded-circle'></Image>
+                                    <Image src='/images/inner-image/user/img-1.jpg' alt='Avatar' className='img-fluid rounded-circle' width={50} height={50}></Image>
                                     </div>
                                 </div>
                             </div>

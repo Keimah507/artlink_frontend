@@ -107,7 +107,7 @@ const Profile = () => {
                         <div className='d-flex align-items-center justify-content-start'>
                             <div className='avatar'>
                                 <Image src='/images/inner-image/user/img-7.jpg' alt=''
-                                className='img-fluid avatar-xl border border-4 border-white rounded-circle'></Image>
+                                className='img-fluid avatar-xl border border-4 border-white rounded-circle' width={50} height={50}></Image>
                             </div>
                             <div className='profile-name ms-3'>
                                 <h6 className='fw-bold'>@mickel_fenn</h6>

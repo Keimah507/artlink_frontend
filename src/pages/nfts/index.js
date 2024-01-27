@@ -11,64 +11,24 @@ import ProfileTab from '@/components/ProfileTab';
 import Link from 'next/link';
 
 
-const NftsPage = () => {
+export const getStaticProps = async () => {
+    const res = await fetch("http://localhost:5000/getNFTs?collection=0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6")
+    const data = await res.json()
 
-    const profileItems = [
-        {
-            image: '/images/inner-image/explore/img-2.png',
-            title: 'The Golden State',
-            artist: {
-                image: '/images/inner-image/user/img-7.jpg',
-                username: 'mickel_fenn'
-            },
-            bidInfo: {
-                likes: 10,
-                price: 0.5,
-                highestBid: 0.6
-            }
-        },
-        {
-            image: '/images/inner-image/explore/img-1.png',
-            title: 'Abstract painting',
-            artist: {
-                image: '/images/inner-image/user/img-7.jpg',
-                username: 'mickel_fenn'
-            },
-            bidInfo: {
-                likes: 10,
-                price: 0.5,
-                highestBid: 0.6
-            }
-        },
-        {
-            image: '/images/inner-image/explore/img-3.png',
-            title: 'The Christopher art',
-            artist: {
-                image: '/images/inner-image/user/img-7.jpg',
-                username: 'mickel_fenn'
-            },
-            bidInfo: {
-                likes: 10,
-                price: 0.5,
-                highestBid: 0.6
-            }
-        },
-        {
-            image: '/images/inner-image/explore/img-4.png',
-            title: 'The Boy with The Firefly',
-            artist: {
-                image: '/images/inner-image/user/img-7.jpg',
-                username: 'mickel_fenn'
-            },
-            bidInfo: {
-                likes: 10,
-                price: 0.5,
-                highestBid: 0.6
-            }  
+    return {
+        props: {
+            nfts: data
         }
-    ]
+    }
+}
 
 
+const NftsPage = ({ nfts }) => {
+    if (!nfts || !nfts.data || !nfts.data.nfts) {
+        return (
+            <div> No NFTS found</div>
+        )
+    }
     return(
         <>
         <Navbar />
@@ -109,14 +69,14 @@ const NftsPage = () => {
                     <div className='d-flex flex-column'></div>
                     <div className='position-relative'></div>
                     <div className='row position-absolute'>
-                        {profileItems.map((item, index) => (
+                        {nfts.data.nfts.map((item, index) => (
                         <ProfileTab
-                        href={`/nfts/${index}`}
-                        key={index}
-                        image={item.image}
-                        title={item.title}
-                        artist={item.artist}
-                        bidInfo={item.bidInfo}
+                        href={`/nfts/${item.tokenId}`}
+                        key={item.tokenId}
+                        tokenID={item.tokenId}
+                        image={item.image.fileUrl || '/images/image_not_found.jpg'}
+                        title={item.name}
+                        artist={item.mint.mintAddress}
                         />
                         ))}
                     </div>

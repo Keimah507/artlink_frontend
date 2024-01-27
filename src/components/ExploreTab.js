@@ -84,7 +84,7 @@ const ExploreTab = () => {
                             artist: '@Artist_4',
                             artistImage: '/images/slider/user/img-6.jpg',
                             price: '0.54 ETH',
-                            image: '/images/explore/img-10.png',
+                            image: '/images/explore/img-8.png',
                         }
                     ],
                 },
@@ -105,14 +105,14 @@ const ExploreTab = () => {
                             artist: '@Artist_4',
                             artistImage: '/images/slider/user/img-6.jpg',
                             price: '0.54 ETH',
-                            image: '/images/explore/img-10.png',
+                            image: '/images/explore/img-1.png',
                         },
                         {
                             title: 'Collection',
                             artist: '@Artist_5',
                             artistImage: '/images/slider/user/img-7.jpg',
                             price: '0.54 ETH',
-                            image: '/images/explore/img-13.png',
+                            image: '/images/explore/img-4.png',
                         }
                     ],
                 },
@@ -126,7 +126,7 @@ const ExploreTab = () => {
                             artist: '@Artist_5',
                             artistImage: '/images/slider/user/img-7.jpg',
                             price: '0.54 ETH',
-                            image: '/images/explore/img-13.png',
+                            image: '/images/explore/img-3.png',
                         },
                         {
                             title: 'Robotic Body Art',
@@ -168,7 +168,7 @@ const ExploreTab = () => {
                             artist: '@Artist_4',
                             artistImage: '/images/slider/user/img-6.jpg',
                             price: '0.54 ETH',
-                            image: '/images/explore/img-10.png',
+                            image: '/images/explore/img-8.png',
                         }
                     ],
                 }
@@ -203,12 +203,12 @@ const ExploreTab = () => {
                             <div className='tab-content p-4 border-0'>
                                 <div className='header d-flex align-items-center justify-cotent-start'>
                                     <div className='avatar-xs'>
-                                        <Image src={item.artistImage} alt='' className='img-fluid rounded-circle' />
+                                        <Image src={item.artistImage} alt='' className='img-fluid rounded-circle' layout='responsive' width={50} height={50} />
                                     </div>
                                     <h6 className='mb-0 ms-2 fw-semibold text-muted f-14'>{item.artist}</h6>
                                 </div>
                                 <div className='card-image mt-3'>
-                                    <Image src={item.image} alt='' className='img-fluid' />
+                                    <Image src={item.image || '/images/image_not_found.jpg'} alt='' className='img-fluid' layout='responsive' width={100} height={100} />
                                 </div>
                                 <div className='body-content mt-3'>
                                     <h6 className='fw-bold'>{item.title}</h6>

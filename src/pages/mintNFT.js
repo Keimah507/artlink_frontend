@@ -10,7 +10,7 @@ import { HelpOutline } from '@mui/icons-material';
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { mintNft } from '@/js/interact.js';
-import { pinJsonToIPFS } from '@/js/interact.js';
+import { useRouter } from 'next/router';
 
 export default function MintNFT(props) {
 
@@ -24,6 +24,7 @@ export default function MintNFT(props) {
 
 
     const onMintPressed = async() => {
+        const router = useRouter();
         event.preventDefault();
         setIsLoading(true);
 
@@ -36,6 +37,7 @@ export default function MintNFT(props) {
                 setDescription('');
                 setImage('');
                 setPrice(0);
+                router.push('/nfts');
             }
             else {
                 console.log(status);
@@ -134,7 +136,7 @@ export default function MintNFT(props) {
                                             {isLoading ? 'Minting...' : 'Mint'}
                                             </button>
                                     </div>
-                                    <p id='status' style={{color:"red"}}>{status}</p>
+                                    <p id='status' style={{color: status.startsWith('Success!')? "green" :"red"}}>{status}</p>
                                 </div>
 
                             </div>

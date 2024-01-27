@@ -3,6 +3,7 @@
 // Desc: This is the navbar component for the website
 import React, { useState, useEffect } from "react";
 import WalletButton from "../components/ConnectWalletButton";
+import thirdwebConnectButton from "./ConnectWalletButton";
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
@@ -36,8 +37,8 @@ const Navbar = () =>  {
             <nav className={`navbar navbar-expand-lg ${isSticky ? 'fixed-top bg-light' : 'bg-transparent'}`} id="navbar">
                 <div className="container-fluid custom-container">
                     <Link className="navbar-brand logo f-30 text-dark fw-bold" href="/">
-                        <Image src="/images/logo-light.png" className="logo-light" alt="logo" height='40' />
-                        <Image src="/images/logo-dark.png" className="logo-dark" alt="logo" height='40' />
+                        <Image src="/images/logo-light.png" className="logo-light" alt="logo" height='40' width='100'/>
+                        <Image src="/images/logo-dark.png" className="logo-dark" alt="logo" height='40' width='150'/>
                     </Link>
                     <div>
                     <button className="navbar-toggler me-3" type="button" data-bs-toggle='collapse'
@@ -82,7 +83,7 @@ const Navbar = () =>  {
                                 </ul>
                             </li>
                         </ul>
-                        < WalletButton />
+                        <WalletButton/>
                     </div>
                 </div>
             </nav>

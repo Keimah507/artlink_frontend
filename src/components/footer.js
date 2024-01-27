@@ -14,8 +14,8 @@ const Footer = () => {
                          <div className="col-lg-4">
                             <div className="footer-info mt-4">
                                 <Link className="logo f-30 text-dark fw-bold" href="/">
-                                    <Image src="/images/logo-light.png" className="logo-light" alt="logo" height='40' /> 
-                                    <Image src="/images/logo-dark.png" className="logo-dark" alt="logo" height='40' /> 
+                                    <Image src="/images/logo-light.png" className="logo-light" alt="logo" height='40' width={40} /> 
+                                    <Image src="/images/logo-dark.png" className="logo-dark" alt="logo" height='40' width={40} /> 
                                 </Link>
                             </div>
                          </div>

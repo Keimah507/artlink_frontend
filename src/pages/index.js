@@ -213,7 +213,7 @@ export default function marketplace() {
                                 <button className='btn btn-primary mt-3'>Start collection</button>
                             </div>
                             <div className='col-lg-4 offset-lg-2'>
-                                <Image src='./images/cta/img.png' className='img-fluid' alt='CTA Image'></Image>
+                                <Image src='/images/cta/img.png' className='img-fluid' alt='CTA Image' layout='responsive' width={100} height={100}></Image>
                             </div>
                         </div>
                     </div>

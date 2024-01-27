@@ -76,7 +76,7 @@ const ArtistsPage = () => {
                                         <h5 className='fw-bold'>{index + 1}.</h5>
                                     </div>
                                     <div className='creator-image text-center'>
-                                        <Image src={member.profileImg} alt='' className='img-fluid avatar-lg rounded-circle'></Image>
+                                        <img src={member.profileImg} alt='' className='img-fluid avatar-lg rounded-circle'></img>
                                     </div>
                                     <div className='creator-content text-center mt-3'>
                                         <h6 className='fw-bold'>{member.username}</h6>

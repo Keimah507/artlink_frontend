@@ -80,7 +80,7 @@ const editProfile = () => {
                                         <div className='d-flex align-items-center'>
                                             <div className='flex-shrink-0'>
                                                 <div className='avatar'>
-                                                    <Image src='/images/inner-image/img-1.png' alt='' className='img-fluid rounded-circle avatar-sm'></Image>
+                                                    <Image src='/images/inner-image/img-1.png' alt='' className='img-fluid rounded-circle avatar-sm' width={50} height={50}></Image>
                                                 </div>
                                             </div>
                                             <div className='flex-grow-1 ms-3'>

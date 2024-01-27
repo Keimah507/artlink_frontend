@@ -7,181 +7,257 @@
 //  6. NFT metadata is saved to Firestore to be displayed on the frontend
 
 
-const { ethers } = require("ethers");
-import Rareterm from 'rareterm';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { createRaribleSdk } from '@rarible/sdk';
-import Web3 from 'web3';
-// require('dotenv').config();
-// const alchemyKey = process.env.ALCHEMY_API_KEY;
-// const contractABI = process.env.CONTRACT_ABI;
-// const contractAddress = process.env.CONTRACT_ADDRESS;
-// const rarepress = new Rareterm();
-// const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-// const web3 = createAlchemyWeb3(alchemyKey);
+const ethers = require('ethers');
+import { Sepolia } from '@thirdweb-dev/chains';
+import { ThirdwebSDK } from '@thirdweb-dev/sdk';
+// import { data } from 'autoprefixer';
 
-// export const getSigner = async() => {
-//     const provider = new Web3(window.ethereum);
-//     const signer = provider.getSigner();
-//     return signer;
+// Alchemy imports
+
+import { createAlchemyWeb3 } from '@alch/alchemy-web3';
+import { Alchemy, Network } from 'alchemy-sdk'; 
+const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
+const contractAddress = '0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6';
+const contractABI = require('../contract-abi.json');
+const web3 = createAlchemyWeb3(alchemyKey);
+const etherscanApiKey = '225UJ23DEFUCKR4QX61RM4RGM51S49YCDK';
+
+
+const settings = {
+    apiKey: alchemyKey,
+    network: Network.ETH_SEPOLIA
+}
+
+const alchemy = new Alchemy(settings);
+
+
+// async function getContractABI(contractAddress, etherscanApiKey) {
+//     const url = `https://api.etherscan.io/api?module=contract&action=getabi&address=${contractAddress}&apikey=${etherscanApiKey}`;
+
+//     try {
+//         const response = await fetch(url);
+//         const data = await response.json();
+
+//         if (data.status === '1') {
+//             const contractABI = JSON.parse(data.result);
+
+//             return {
+//                 success: true,
+//                 contractABI
+//             };
+//         } else {
+//             return {
+//                 success: false,
+//                 error: 'Failed to fetch contract ABI'
+//             };
+//         }
+//     } catch (error) {
+//         console.error(error);
+
+//         return {
+//             success: false,
+//             error: 'Unexpected error occurred'
+//         };
+//     }
 // }
 
 
 export const mintNft = async(name, description, price, image) => {
 
-
-    const provider = new Web3(window.ethereum);
-    const sdk = createRaribleSdk(provider, 'development', {apiKey: process.env.RARIBLE_API_KEY});
-
-    if ((name.trim() == '' || description.trim() == '')){
-        return {
-            success: false,
-            status: "Please make sure all fields are Completed before minting"
-        }
-    }
-
-    console.log(image, name, description, price);
-
-    const metadata = new Object();
-    metadata.name = name;
-    metadata.description = description;
-    // Upload image to Firestore
     try {
-        const formDataImage = new FormData();
-        formDataImage.append('image', image);
-        const response = await fetch('https://artlink-cf7a7b7b9f96.herokuapp.com/uploadImage',
+        const signer = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+
+        const sdk = ThirdwebSDK.fromSigner(signer, Sepolia, {
+            clientId: '7aeb15e6111d934a94d8f224be536e01',
+        });
+
+
+
+        if ((name.trim() == '' || description.trim() == '')){
+            return {
+                success: false,
+                status: "Please make sure all fields are Completed before minting"
+            }
+        }
+
+        console.log(image, name, description, price);
+
+        const metadata = new Object();
+        metadata.name = name;
+        metadata.description = description;
+        // Upload image to Firestore
+        try {
+            const formDataImage = new FormData();
+            formDataImage.append('image', image);
+            const response = await fetch('https://artlink-cf7a7b7b9f96.herokuapp.com/uploadImage',
+            {
+                headers: {
+                    // Allow CORS
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Origin, Authorization, Content-Length, X-Requested-With',
+                },
+                method: 'POST',
+                body: formDataImage,
+            });
+            const uploadData = await response.json();
+            console.log(uploadData.url);
+            metadata.url = uploadData.url;
+            metadata.image = image;
+        } catch(err) {
+            console.error(err);
+        }
+
+
+        // Put this in a try catch block
+        const pinataResponse = await axios.post('https://artlink-cf7a7b7b9f96.herokuapp.com/pinJSONToIPFS',
+        metadata,
         {
             headers: {
-                // Allow CORS
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                'Access-Control-Allow-Headers': 'Origin, Authorization, Content-Length, X-Requested-With',
-            },
-            method: 'POST',
-            body: formDataImage,
+                pinata_api_key: process.env.PINATA_KEY,
+                pinata_secret_api_key: process.env.PINATA_SECRET
+            }
+        })
+        .then(function (response) {
+            return {
+                success: true,
+                pinataUrl: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
+            };
+        })
+        .catch(function (error) {
+            return {
+                success: false,
+                status: "Something went wrong: " + error.message
+            };
         });
-        console.log(response);
-        metadata.image = response.url;
-    } catch(err) {
-        console.error(err);
-    }
+        console.log(pinataResponse.pinataUrl);
+
+        const tokenURI = pinataResponse.pinataUrl;
+        metadata.tokenURI = tokenURI;
+        metadata.price = price;
+        console.log(metadata);
+        const contract = await sdk.getContract('0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6');
+
+        const tx = await contract.erc721.mint(metadata);
+        const receipt = tx.receipt;
+        const tokenId = tx.id;
+        const nft = tx.data();
 
 
-    // Put this in a try catch block
-    const pinataResponse = await axios.post('https://artlink-cf7a7b7b9f96.herokuapp.com/pinJSONToIPFS',
-    metadata,
-    {
-        headers: {
-            pinata_api_key: process.env.PINATA_KEY,
-            pinata_secret_api_key: process.env.PINATA_SECRET
+        // Add error handling here ({success, status})
+        const marketplaceContract = await sdk.getContract('0xb0E10cdd991715CF872542B1e14f787dE789cE33')
+        try {
+            const listing = {
+                tokenId: tokenId,
+                pricePerToken: price,
+                assetContractAddress: contractAddress,
+                quantity: 1,
+                currencyContractAddress: '0x0000000000000000000000000000000000000000',
+                startTimeStamp: Math.floor(Date.now() / 1000),
+                endTimeStamp: Math.floor(Date.now() / 1000) + 1000000,
+                isReservedListing: false,
+            }
+
+            const marketplaceTx = await marketplaceContract.directListings.createListing(listing);
+            const marketplaceReceipt = marketplaceTx.receipt;
+            const marketplaceListingId = marketplaceTx.id;
+        } catch (error) {
+            console.error(error);
         }
-    })
-    .then(function (response) {
-        return {
-            success: true,
-            pinataUrl: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
-        };
-    })
-    .catch(function (error) {
-        return {
-            success: false,
-            status: "Something went wrong: " + error.message
-        };
-    });
-    console.log(pinataResponse.pinataUrl);
+        return { success: true, status: "Success! NFT minted Successfuly!"};
+    } catch (error) {
+        return { success: false, status: "Something went wrong: " + error.message};
+    }
+}
 
-
+export const mint = async(name, description, price, image) => {
 
     try {
-        const collection = await sdk.apis.collection.getCollectionById({ collection: 'ETHEREUM:0xc9154424B823b10579895cCBE442d41b9Abd96Ed' });
-        console.log(collection);
-        const mint = await sdk.nft.mint({ collection })
-        console.log(mint);
-        const result = await mint.submit({
-            lazyMint: true,
-            supply: 1,
-            uri: pinataResponse.pinataUrl,
-            creators: [{
-                account: window.ethereum.selectedAddress,
-                value: 10000
-            }]
+        const signer = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+
+        const sdk = ThirdwebSDK.fromSigner(signer, Sepolia, {
+            clientId: '7aeb15e6111d934a94d8f224be536e01',
+        });
+
+
+
+        if ((name.trim() == '' || description.trim() == '')){
+            return {
+                success: false,
+                status: "Please make sure all fields are Completed before minting"
+            }
+        }
+
+        console.log(image, name, description, price);
+
+        const metadata = new Object();
+        metadata.name = name;
+        metadata.description = description;
+        // Upload image to Firestore
+        try {
+            const formDataImage = new FormData();
+            formDataImage.append('image', image);
+            const response = await fetch('https://artlink-cf7a7b7b9f96.herokuapp.com/uploadImage',
+            {
+                headers: {
+                    // Allow CORS
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Origin, Authorization, Content-Length, X-Requested-With',
+                },
+                method: 'POST',
+                body: formDataImage,
+            });
+            const uploadData = await response.json();
+            console.log(uploadData.url);
+            metadata.url = uploadData.url;
+            metadata.image = image;
+        } catch(err) {
+            console.error(err);
+        }
+
+
+        // Put this in a try catch block
+        const pinataResponse = await axios.post('https://artlink-cf7a7b7b9f96.herokuapp.com/pinJSONToIPFS',
+        metadata,
+        {
+            headers: {
+                pinata_api_key: process.env.PINATA_KEY,
+                pinata_secret_api_key: process.env.PINATA_SECRET
+            }
         })
-        console.log(result);
-        return {
-            success: true,
-            status: "Check out your transaction on Etherscan: https://etherscan.io/tx/" + result.transactionHash
-        };
+        .then(function (response) {
+            return {
+                success: true,
+                pinataUrl: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
+            };
+        })
+        .catch(function (error) {
+            return {
+                success: false,
+                status: "Something went wrong: " + error.message
+            };
+        });
+        console.log(pinataResponse.pinataUrl);
+
+        const tokenURI = pinataResponse.pinataUrl;
+        metadata.tokenURI = tokenURI;
+        metadata.price = price;
+        console.log(metadata);
+        const contract = await sdk.getContract('0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6');
+
+        try {
+        const tx = await contract.erc721.mint(metadata);
+        } catch (error) {
+            return { success: false, status: "Something went wrong: " + error.message};
+        }
+        const receipt = tx.receipt;
+        const tokenId = tx.id;
+        const nft = tx.data();
+
+        return { success: true, status: "Success! NFT minted Successfuly!"};
     } catch (error) {
-        return {
-            success: false,
-            status: "Something went wrong here: " + error.message
-        };
+        return { success: false, status: "Something went wrong: " + error.message};
     }
-
-    // Down here is code to use rarepress for lazy minting. It's not working right now, but I'm keeping it here for reference.
-
-
-    // try{
-    // await rarepress.init({ host: "https://eth.rarenet.app/v1" });
-    // } catch (error) {
-    //     return {
-    //         success: false,
-    //         status: "Something went wrong here: " + error.message
-    //     };
-    // }
-
-    // try{
-    //     console.log(rarepress.fs);
-    //     let cid = await rarepress.fs.add(url);
-    //     let token = await rarepress.token.create({
-    //         type: "ERC721",
-    //         metadata: {
-    //             name: name,
-    //             description: description,
-    //             image: "/ipfs/" + cid,
-            
-    //         },
-    //     })
-
-    //     await rarepress.fs.push(cid);
-    //     await rarepress.fs.push(token.tokenURI);
-    //     let receipt = await rarepress.token.send(token)
-    //     console.log(token, receipt)
-    //     return {
-    //         token, receipt
-    //     }
-    // } catch (error) {
-    //     return {
-    //         success: false,
-    //         status: "Something went wrong: " + error.message
-    //     };
-    // }
-
-    
-    // window.contract = await new web3.eth.Contract(contractABI, contractAddress);
-
-    // const transactionParams = {
-    //     to: contractAddress,
-    //     from: window.ethereum.selectedAddress,
-    //     data: window.contract.methods
-    //     .mintNFT(window.ethereum.selectedAddress, tokenURI)
-    //     .encodeABI()
-    // };
-
-    // try {
-    //     const txHash = await window.ethereum.request({
-    //         method: 'eth_sendTransaction',
-    //         params: [transactionParams],
-    //     });
-    //     return {
-    //         success: true,
-    //         status: "Check out your transaction on Etherscan: https://etherscan.io/tx/" + txHash
-    //     };
-    // } catch (error) {
-    //     return {
-    //         success: false,
-    //         status: "Something went wrong: " + error.message
-    //     };
-    // }
 }
