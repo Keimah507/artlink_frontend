@@ -21,7 +21,6 @@ const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 const contractAddress = '0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6';
 const contractABI = require('../contract-abi.json');
 const web3 = createAlchemyWeb3(alchemyKey);
-const etherscanApiKey = '225UJ23DEFUCKR4QX61RM4RGM51S49YCDK';
 
 
 const settings = {
