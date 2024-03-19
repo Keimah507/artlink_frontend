@@ -15,20 +15,20 @@ import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 
 // Alchemy imports
 
-import { createAlchemyWeb3 } from '@alch/alchemy-web3';
-import { Alchemy, Network } from 'alchemy-sdk'; 
-const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
-const contractAddress = '0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6';
-const contractABI = require('../contract-abi.json');
-const web3 = createAlchemyWeb3(alchemyKey);
+// import { createAlchemyWeb3 } from '@alch/alchemy-web3';
+// import { Alchemy, Network } from 'alchemy-sdk'; 
+// const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
+// const contractAddress = '0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6';
+// const contractABI = require('../contract-abi.json');
+// const web3 = createAlchemyWeb3(alchemyKey);
 
 
-const settings = {
-    apiKey: alchemyKey,
-    network: Network.ETH_SEPOLIA
-}
+// const settings = {
+//     apiKey: alchemyKey,
+//     network: Network.ETH_SEPOLIA
+// }
 
-const alchemy = new Alchemy(settings);
+// const alchemy = new Alchemy(settings);
 
 
 // async function getContractABI(contractAddress, etherscanApiKey) {
