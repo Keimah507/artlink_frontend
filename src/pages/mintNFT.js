@@ -20,7 +20,7 @@ export default function MintNFT(props) {
 
 
     const onMintPressed = async() => {
-        const router = useRouter();
+        // const router = useRouter();
         event.preventDefault();
         setIsLoading(true);
 
@@ -33,7 +33,7 @@ export default function MintNFT(props) {
                 setDescription('');
                 setImage('');
                 setPrice(0);
-                router.push('/nfts');
+                // router.push('/nfts');
             }
             else {
                 console.log(status);
