@@ -1,10 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/style.css';
-import '@iconscout/unicons/css/line.css';
-import '../css/tiny-slider.css';
-import '../css/swiper.min.css';
-import '../css/style.min.css';
 import { useState, useEffect } from 'react';
 import { HelpOutline } from '@mui/icons-material';
 import NavBar from "@/components/navbar";

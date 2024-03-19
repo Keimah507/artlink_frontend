@@ -260,3 +260,55 @@ export const mint = async(name, description, price, image) => {
         return { success: false, status: "Something went wrong: " + error.message};
     }
 }
+
+const updateNFTMetadata = async(tokenId, name, description, price) => {
+    const tokenID = tokenId;
+    const argsArray = [tokenID, name, description, price]
+    const metadata = {};
+
+    argsArray.forEach(element => {
+        if (element != null) {
+            metadata[element] = element;
+        }
+    });
+
+    // Please change this to a constant from .env
+    const contract = await sdk.getContract('0xCe6e401D3786Efe354E75BE01BDcAaE5088F87B6');
+
+    await contract.erc721.update(metadata);
+
+}
+
+// The listingID is derived from state??Idk
+
+
+export const updateListing = async(listingId, tokenId, name, description, price) => {
+    try {
+        const sdk = ThirdwebSDK.fromSigner(signer, Sepolia, {
+            clientId: '7aeb15e6111d934a94d8f224be536e01',
+        });
+
+        updateNFTMetadata(tokenId, name, description, price);
+
+        const marketplaceContract = await sdk.getContract('0xb0E10cdd991715CF872542B1e14f787dE789cE33')
+        const listing = {
+            assetContractAddress: contractAddress,
+            tokenId,
+            assetContractAddress: contractAddress,
+            quantity: 1,
+            currencyContractAddress: '0x0000000000000000000000000000000000000000',
+            startTimeStamp: Math.floor(Date.now() / 1000),
+            endTimeStamp: Math.floor(Date.now() / 1000) + 1000000,
+            isReservedListing: false,
+        }
+
+        const updateListingTx = await marketplaceContract.directListings.updateListing(listingId, listing);
+        const updateListingReceipt = updateListingTx.receipt;
+        const updateListingId = updateListingTx.id;
+
+
+
+    } catch (error) {
+
+    }
+}

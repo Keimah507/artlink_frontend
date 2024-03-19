@@ -2,9 +2,9 @@
 
 import pinataSDK from '@pinata/sdk';
 require('dotenv').config();
-const key = process.env.PINATA_KEY;
-const secret = process.env.PINATA_SECRET;
-const JWT_SECRET = process.env.PINATA_JWT_SECRET;
+const key = process.env.REACT_APP_PINATA_KEY;
+const secret = process.env.REACT_APP_PINATA_SECRET;
+const JWT_SECRET = process.env.REACT_APP_PINATA_JWT_SECRET;
 const axios = require('axios');
 const pinata = pinataSDK(key, secret);
 
