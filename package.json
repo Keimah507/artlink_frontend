@@ -19,7 +19,6 @@
     "@mui/material": "^5.14.18",
     "@next/bundle-analyzer": "^14.0.4",
     "@nextui-org/react": "^2.2.9",
-    "@thirdweb-dev/react": "^4.3.2",
     "@thirdweb-dev/sdk": "^4.0.27",
     "bootstrap": "^5.3.2",
     "ethers": "^5",
