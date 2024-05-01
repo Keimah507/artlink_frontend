@@ -66,11 +66,11 @@ const Navbar = () =>  {
                                 <Link href='/mintNFT' className='nav-link'>Mint NFT</Link>
                             </li>
 
-                            <li className='nav-item'>
+                            {/* <li className='nav-item'>
                                 <Link href='/artists' className='nav-link'>Artists</Link>
-                            </li>
+                            </li> */}
 
-                            <li className='nav-item dropdown dropdown-hover'>
+                            {/* <li className='nav-item dropdown dropdown-hover'>
                                 <Link className='nav-link dropdown-toggle' href='/' id='homedrop' role='button'
                                 data-bs-toggle='dropdown'>Profile</Link>
                                 <ul className='dropdown-menu dropdown-menu-center' aria-labelledby='homedrop'>
@@ -81,7 +81,7 @@ const Navbar = () =>  {
                                     <FaceRetouchingNaturalIcon className='f-20 me-2 align-middle' />Edit Profile
                                     </Link></li>
                                 </ul>
-                            </li>
+                            </li> */}
                         </ul>
                         <WalletButton/>
                     </div>

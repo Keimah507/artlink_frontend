@@ -39,6 +39,7 @@ export async function getStaticProps(context) {
     const data = await res.json()
 
     const nft = data.data;
+    nft.mint.timestamp = new Date(nft.mint.timestamp).toLocaleString();
 
     return {
         props: {
@@ -49,7 +50,7 @@ export async function getStaticProps(context) {
 }
 
 export default function NFT( { nft }) {
-    // console.log(nft);
+    console.log(nft);
 
 
     const profileItems = {
@@ -135,7 +136,7 @@ export default function NFT( { nft }) {
                                 <div className='row border rounded-3'>
                                     <div className='mt-2 col-lg-6'>
                                         <h6 className='fw-bold mb-1'>Minimum bid</h6>
-                                        <p className='fw-semibold'>{nft.raw.price} <span className='text-muted'>ETH</span></p>
+                                        <p className='fw-semibold'> 0.001 <span className='text-muted'>ETH</span></p>
                                     </div>
 
                                     <div className='d-flex mb-4 justify-content-evenly'>
@@ -145,7 +146,7 @@ export default function NFT( { nft }) {
                                 </div>
 
                                 <div className='tab-box my-4'>
-                                    <NftDetailTab />
+                                    <NftDetailTab nft={nft} />
                                 </div>
 
 
@@ -164,8 +165,8 @@ export default function NFT( { nft }) {
 }
 
 // Bug found! nft cannot be passed as props to NftDetailTab
-const NftDetailTab = () => {
-    // console.log(nft);
+function NftDetailTab ({ nft })  {
+    console.log(nft);
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
@@ -177,8 +178,8 @@ const NftDetailTab = () => {
             tabTitle: 'Details',
             content: (
                 <div className='tab-pane fade show' id='details' role='tabpanel' aria-labelledby='details-tab'>
-                    <p className='text-muted'>NFT name</p>
-                    <p className='text-muted'>NFT description</p>
+                    <p className='text-muted'>NFT Name: {nft.name}</p>
+                    <p className='text-muted'>NFT Description:{nft.description}</p>
                 </div>
             )
         },
@@ -190,27 +191,14 @@ const NftDetailTab = () => {
                     <h6 className='fw-bold mb-1'>History</h6>
                     <div className='nav-in-box d-flex align-items-center box-shadow p-4'>
                         <div className='flex-shrink-0'>
-                            <div className='avatar-md'>
+                            {/* <div className='avatar-md'>
                                 <Image src='/images/inner-image/user/img-1.jpg' alt='' className='img-fluid rounded-circle' width={50} height={50}></Image>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='flex-grow-1 ms-3'>
-                            <p className='mb-0 text-dark'>Bid accepted by <span className='text-primary fw-bold'>
-                                2.2 ETH</span> <span className='text-muted'>@brodie</span></p>
-                            <p className='mb-0 text-muted'>22/3/23, 10.11 UTC+0</p>
-                        </div>
-                    </div>
-
-                    <div className='nav-in-box d-flex align-items-center box-shadow p-4 mt-3'>
-                        <div className='flex-shrink-0'>
-                            <div className='avatar-md'>
-                                <Image src='/images/inner-image/user/img-5.jpg' alt='' className='img-fluid rounded-circle' width={50} height={50}></Image>
-                            </div>
-                        </div>
-                        <div className='flex-grow-1 ms-3'>
-                            <p className='mb-0 text-dark'>Bid accepted by <span className='text-primary fw-bold'>
-                            1 ETH</span> <span className='text-muted'>@ayoub_fennouni</span></p>
-                            <p className='mb-0 text-muted'>11/9/22, 19:33 UTC+0</p>
+                            <p className='mb-0 text-dark'>Minted for <span className='text-primary fw-bold'>
+                                0.001 ETH</span> <span className='text-muted'>By {nft.mint.mintAddress}</span></p>
+                            <p className='mb-0 text-muted'>Minted at: {nft.mint.timestamp}</p>
                         </div>
                     </div>
                 </div>
